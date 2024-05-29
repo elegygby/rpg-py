@@ -14,7 +14,7 @@ link = {
     'exp': 0,
     'exp_max': 10,
     'HP': 5,
-    'mana': 10,
+    'mana': 20,
     'atk': 3
 }
 
