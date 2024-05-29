@@ -12,7 +12,7 @@ link = {
     'nome': 'Link',
     'level': 1,
     'exp': 0,
-    'exp_max': 20,
+    'exp_max': 10,
     'HP': 5,
     'mana': 10,
     'atk': 3
