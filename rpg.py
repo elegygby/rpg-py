@@ -14,6 +14,7 @@ link = {
     'exp': 0,
     'exp_max': 10,
     'HP': 5,
+  'HP_max': 5,
     'mana': 20,
     'atk': 3
 }
@@ -69,6 +70,9 @@ def death_npc(monster):
         return True
     return False
 
+def rest():
+    link['HP'] = link['HP_max']
+
 # Função para game over
 def death_link():
     if link['HP'] <= 0:
@@ -99,7 +103,7 @@ while True:
         break
     print('--------------')
 
-    action = input('O que quer fazer?  (1) Atacar inimigo  //  (2) Sair ')
+    action = input('O que quer fazer?  (1) Atacar inimigo  //  (2) Descançar  //  (3) Sair ')
 
     if action == '1':
         atack_npc(current_monster)
@@ -113,6 +117,8 @@ while True:
             if death_link():
                 break
     elif action == '2':
+        rest()
+    elif action == '3':
         break
     else:
         print('AÇÃO INVALIDA')
