@@ -16,6 +16,8 @@ link = {
     'HP': 5,
     'HP_max': 5,
     'mana': 20,
+    'mana_max': 20,
+    'magic_atk': 4,
     'atk': 3
 }
 
@@ -49,9 +51,26 @@ def up_level():
         link['exp'] = 0
         link['exp_max'] *= 2
         link['HP'] += 2
+        link['HP_max'] += 2
         link['atk'] += 2
+        link['magic_atk'] += 2
         print(f"{link['nome']} upou de level!")
 
+def init_batle(current_monster):
+    print("Batalha iniciada")
+    input(f"Como quer atacar?  (1) Espada: Dano: {link['atk']}  //  (2) Magia: Dano: {link['magic_atk']} Custo: 5 ")
+    if action == '1':
+        atack_npc(current_monster)
+    elif action == '2':
+        magic_atack(current_monster)
+    else:
+        print('AÇÃO INVALIDA')
+
+def magic_atack(monster):
+    if link['mana'] >= 5:
+        link['mana'] -= 5
+        monster['hp'] -= link['magic_atk']
+        
 # Função de atacar inimigo
 def atack_npc(monster):
     monster['HP'] -= link['atk']
@@ -72,6 +91,8 @@ def death_npc(monster):
 
 def rest():
     link['HP'] = link['HP_max']
+    link['mana'] = link['mana_max']
+    print(f"{link['nome']} descansou e recuperou toda a vida e mana.")
 
 # Função para game over
 def death_link():
@@ -103,10 +124,10 @@ while True:
         break
     print('--------------')
 
-    action = input('O que quer fazer?  (1) Atacar inimigo  //  (2) Descançar  //  (3) Sair ')
+    action = input('O que quer fazer?  (1) Iniciar batalha  //  (2) Descançar  //  (3) Sair ')
 
     if action == '1':
-        atack_npc(current_monster)
+        init_batle(current_monster)
         if death_npc(current_monster):
             list_monster.pop(0)
             if not list_monster:
